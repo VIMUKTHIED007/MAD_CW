@@ -38,6 +38,10 @@ android {
 dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation ("com.google.android.gms:play-services-maps:17.0.1")
+    implementation ("com.google.android.gms:play-services-location:17.0.0")
+
+
 
 
     implementation(libs.appcompat)

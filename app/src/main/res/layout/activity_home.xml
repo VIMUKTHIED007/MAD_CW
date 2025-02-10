@@ -36,6 +36,7 @@
     <!-- Nav Bar -->
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="450dp"
         android:layout_height="790dp"
         android:layout_marginTop="8dp"
@@ -95,8 +96,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:orientation="horizontal">
 
@@ -105,18 +106,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="22dp"
-                    android:textStyle="bold"
+                    android:text="Categories"
                     android:textColor="@color/black"
+                    android:textSize="22dp"
 
-                    android:text="Categories" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtSeeAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
-                    android:text="SeeAll" />
+                    android:text="SeeAll"
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -125,9 +126,39 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:paddingEnd="12dp" />
+
+            <CalendarView
+                android:id="@+id/calendarView5"
+                android:layout_width="229dp"
+                android:layout_height="269dp" />
+
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="218dp"
+        android:layout_height="229dp"
+        android:layout_marginBottom="61dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/srilanka" />
+
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="165dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#1330CE"
+        android:text="Location"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -138,6 +169,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="78dp"
             android:layout_margin="24dp"

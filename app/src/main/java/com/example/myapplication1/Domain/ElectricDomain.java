@@ -54,4 +54,6 @@ public class ElectricDomain {
     public void setRatingCount(int ratingCount) {
         this.ratingCount = ratingCount;
     }
+
+
 }

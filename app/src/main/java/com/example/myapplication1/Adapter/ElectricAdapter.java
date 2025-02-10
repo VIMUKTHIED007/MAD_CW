@@ -1,9 +1,9 @@
 package com.example.myapplication1.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,48 +17,38 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ElectricAdapter extends RecyclerView.Adapter<ElectricAdapter.ViewHolder> {
-    private final ArrayList<ElectricDomain> items;
+    private ArrayList<ElectricDomain> items; // Data list
+    private Context context;
+    private OnItemClickListener listener;
 
-    public ElectricAdapter(ArrayList<ElectricDomain> items) {
+    // Constructor with listener
+    public ElectricAdapter(ArrayList<ElectricDomain> items, OnItemClickListener listener) {
         this.items = items;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ElectriListBinding binding = ElectriListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        context = parent.getContext();
+        ElectriListBinding binding = ElectriListBinding.inflate(LayoutInflater.from(context), parent, false);
         return new ViewHolder(binding);
     }
 
-    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ElectricDomain currentItem = items.get(position);
 
-        // Bind data to views
+        // Bind the data
         holder.binding.name.setText(currentItem.getName());
         holder.binding.experience.setText(currentItem.getExperience());
         holder.binding.ratingBar.setRating(currentItem.getRating());
         holder.binding.ratingCount.setText("(" + currentItem.getRatingCount() + ")");
 
-        // Load image using Glide
-        int drawableResourceId = holder.binding.getRoot().getResources()
-                .getIdentifier(currentItem.getPicPath(), "drawable", holder.binding.getRoot().getContext().getPackageName());
-        Glide.with(holder.binding.getRoot().getContext())
-                .load(drawableResourceId)
-                .into(holder.binding.elcImage);
-
-        // Handle RatingBar changes
-        holder.binding.ratingBar.setOnRatingBarChangeListener((RatingBar ratingBar, float rating, boolean fromUser) -> {
-            if (fromUser) {
-                // Update the rating for the item
-                currentItem.setRating(rating);
-
-                // Optional: Sort the list by ratings
-                items.sort(Comparator.comparingDouble(ElectricDomain::getRating).reversed());
-
-                // Notify the adapter of the changes
-                notifyDataSetChanged();
+        // Add listener for the item click (null check for listener)
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(currentItem);
             }
         });
     }
@@ -69,11 +59,15 @@ public class ElectricAdapter extends RecyclerView.Adapter<ElectricAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        final ElectriListBinding binding;
+        ElectriListBinding binding; // View Binding for item layout
 
         public ViewHolder(@NonNull ElectriListBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(ElectricDomain item);
     }
 }

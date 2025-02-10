@@ -69,6 +69,27 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+
+        binding.btnLocation.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, MapActivity.class);
+            startActivity(intent);
+        });
+
+
+        binding.imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -78,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         ArrayList<categoryDomain> items=new ArrayList<>();
-        items.add(new categoryDomain("Electrical","sample1"));
+        items.add(new categoryDomain("Electrical","eletrical"));
         items.add(new categoryDomain("Plumber","plum"));
         items.add(new categoryDomain("Food Order","food"));
         items.add(new categoryDomain("Carpenter","carpenter"));

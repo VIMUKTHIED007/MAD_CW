@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AddActivity">
+
+    <!-- Top Bar -->
+
+    <FrameLayout
+        android:id="@+id/homeLayout"
+        android:layout_width="459dp"
+        android:layout_height="75dp"
+        android:background="#1330CE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/homeTitle"
+            android:layout_width="314dp"
+            android:layout_height="80dp"
+            android:paddingStart="10dp"
+            android:paddingTop="18dp"
+            android:text="WorkNest"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="96dp"
+        android:text="Enter Your Details"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Addname"
+        android:layout_width="380dp"
+        android:layout_height="61dp"
+        android:background="@drawable/custome_edittext"
+        android:drawablePadding="12dp"
+        android:hint="Your Name"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.097" />
+
+    <EditText
+        android:id="@+id/adddescription"
+        android:layout_width="380dp"
+        android:layout_height="120dp"
+        android:background="@drawable/custome_edittext"
+        android:drawablePadding="12dp"
+        android:hint="Description"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Addtype"
+        app:layout_constraintVertical_bias="0.082" />
+
+    <EditText
+        android:id="@+id/Addtype"
+        android:layout_width="380dp"
+        android:layout_height="61dp"
+        android:background="@drawable/custome_edittext"
+        android:drawablePadding="12dp"
+        android:hint="Category Type"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Addname"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <EditText
+        android:id="@+id/adddnumber"
+        android:layout_width="380dp"
+        android:layout_height="61dp"
+        android:background="@drawable/custome_edittext"
+        android:drawablePadding="12dp"
+        android:hint="Contact Number"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adddescription"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <Button
+        android:id="@+id/btnsignapp"
+        android:layout_width="365dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="#1330CE"
+        android:text="Submit"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adddnumber"
+        app:layout_constraintVertical_bias="0.371" />
+</androidx.constraintlayout.widget.ConstraintLayout>
