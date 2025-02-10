@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         ArrayList<categoryDomain> items=new ArrayList<>();
-        items.add(new categoryDomain("Electrical","eletrical"));
+        items.add(new categoryDomain("Electrical","sample1"));
         items.add(new categoryDomain("Plumber","plum"));
         items.add(new categoryDomain("Food Order","food"));
         items.add(new categoryDomain("Carpenter","carpenter"));
