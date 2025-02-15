@@ -37,10 +37,20 @@ public class ElcActivity1 extends AppCompatActivity {
         btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ElcActivity1.this, PaymentActivity.class);
+                // Get the client name from the TextView
+                String clientName = binding.clientName.getText().toString();
+
+                // Create an Intent to navigate to CashPaymentActivity
+                Intent intent = new Intent(ElcActivity1.this, CashPaymentActivity.class);
+
+                // Pass the client name to the next activity
+                intent.putExtra("CLIENT_NAME", clientName);
+
+                // Start CashPaymentActivity
                 startActivity(intent);
             }
         });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

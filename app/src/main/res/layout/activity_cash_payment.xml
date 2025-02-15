@@ -21,6 +21,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Description Label -->
+
+    <!-- Description EditText -->
+
+    <!-- Fix Date Label -->
+
+    <TextView
+        android:id="@+id/clientNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        android:text="Client Name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
@@ -29,25 +45,22 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/clientNameTextView" />
 
-    <!-- Description EditText -->
     <EditText
         android:id="@+id/descriptionInput"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="88dp"
         android:background="@android:drawable/edit_text"
+        android:gravity="top"
         android:hint="Enter job description"
         android:inputType="textMultiLine"
-        android:gravity="top"
         android:padding="12dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewDescription" />
+        app:layout_constraintTop_toTopOf="@+id/textViewDescription" />
 
-    <!-- Fix Date Label -->
     <TextView
         android:id="@+id/textViewFixDate"
         android:layout_width="wrap_content"
@@ -73,6 +86,7 @@
     <!-- Confirm Button -->
     <Button
         android:id="@+id/btnBookNow"
+        android:onClick="showNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

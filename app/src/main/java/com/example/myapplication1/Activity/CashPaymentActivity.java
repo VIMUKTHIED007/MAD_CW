@@ -1,77 +1,62 @@
 package com.example.myapplication1.Activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.myapplication1.R;
-
-import java.util.Calendar;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication1.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication1.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication1.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
-
+import java.util.Map;
 
 public class CashPaymentActivity extends AppCompatActivity {
     private EditText descriptionInput;
     private CalendarView calendarView;
     private Button btnBookNow;
     private String selectedDate = "";
-
     private static String confirmedDate = "";
+
+    // TextView to display the client name
+    private TextView clientNameTextView;
+
+    // Firestore Database Instance
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        FirebaseApp.initializeApp(this);  // Initialize Firebase
         setContentView(R.layout.activity_cash_payment);
 
-        // UI Components Initialize
+        // Initialize UI components
         descriptionInput = findViewById(R.id.descriptionInput);
         calendarView = findViewById(R.id.calendarView2);
         btnBookNow = findViewById(R.id.btnBookNow);
+        clientNameTextView = findViewById(R.id.clientNameTextView);
+
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance();
+
+        // Get the client name from Intent
+        String clientName = getIntent().getStringExtra("CLIENT_NAME");
+
+        // Display client name in TextView
+        if (clientName != null) {
+            clientNameTextView.setText(clientName);
+        }
 
         // Set Default Date (Current Date)
         Calendar calendar = Calendar.getInstance();
@@ -79,17 +64,13 @@ public class CashPaymentActivity extends AppCompatActivity {
         selectedDate = sdf.format(calendar.getTime());
 
         // Calendar View Date Change Listener
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
-            }
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
         });
 
-        // Confirm Button Click
+        // "Book Now" Button Click Event
         btnBookNow.setOnClickListener(view -> {
             if (confirmedDate.equals(selectedDate)) {
-                // If the date is already confirmed, show a message
                 Toast.makeText(CashPaymentActivity.this, "This date is already confirmed!", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -104,8 +85,28 @@ public class CashPaymentActivity extends AppCompatActivity {
             // Confirm the date and description
             confirmedDate = selectedDate;
 
-            // Display Confirmation Message
-            Toast.makeText(CashPaymentActivity.this, "Job Confirmed!\nDate: " + selectedDate + "\nDescription: " + description, Toast.LENGTH_LONG).show();
+            // Save to Firestore Database
+            saveBookingToFirestore(clientName, selectedDate, description);
         });
+    }
+
+    private void saveBookingToFirestore(String clientName, String date, String description) {
+        // Create a booking object
+        Map<String, Object> booking = new HashMap<>();
+        booking.put("clientName", clientName);
+        booking.put("date", date);
+        booking.put("description", description);
+
+        // Save data to Firestore
+        firestore.collection("bookings")
+                .add(booking)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(CashPaymentActivity.this, "Booking saved successfully!", Toast.LENGTH_SHORT).show();
+                    Log.d("Firestore", "Booking saved with ID: " + documentReference.getId());
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(CashPaymentActivity.this, "Failed to save booking", Toast.LENGTH_SHORT).show();
+                    Log.e("Firestore Error", e.getMessage());
+                });
     }
 }

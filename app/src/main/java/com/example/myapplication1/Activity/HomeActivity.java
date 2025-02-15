@@ -1,6 +1,7 @@
 package com.example.myapplication1.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,11 +85,27 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        ImageView imgWhatsApp = findViewById(R.id.imgConneWhatsapp);
 
+        imgWhatsApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWhatsApp();
+            }
+        });
+    }
 
+    private void openWhatsApp() {
+        try {
+            String phoneNumber = "+94702786161"; // Replace with actual phone number
+            String url = "https://wa.me/94702786161" + phoneNumber;
 
-
-
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

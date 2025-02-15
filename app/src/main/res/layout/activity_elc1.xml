@@ -12,27 +12,28 @@
         android:layout_height="match_parent">
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/scrollView2"
+            android:layout_width="436dp"
+            android:layout_height="858dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="242dp">
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="450dp"
-                        android:layout_height="300dp"
-                        android:layout_marginEnd="148dp"
+                        android:layout_width="433dp"
+                        android:layout_height="242dp"
+                        android:layout_marginEnd="158dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.006"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
@@ -51,19 +52,19 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/clientName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Saman Edirimuni"
-                    android:textStyle="bold"
-                    android:textSize="38dp"
                     android:layout_marginStart="28dp"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="8dp"
+                    android:text="Saman (Electrician)"
+                    android:textSize="32dp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,11 +90,11 @@
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
                     android:text="Work Schedul"
                     android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="26dp"/>
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,7 +104,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="420dp"
-                        android:layout_height="180dp"
+                        android:layout_height="140dp"
                         android:layout_marginStart="12dp"
                         android:background="@drawable/border_rectangle">
 
@@ -118,6 +119,7 @@
                             android:textSize="22dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -125,31 +127,60 @@
                     android:id="@+id/textView18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="180dp"
                     android:text="Booking Availability"
                     android:textSize="24dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginStart="12dp"
-                    android:textStyle="bold"/>
-
-
-                <Button
-                    android:id="@+id/btnBookNow"
-                    android:layout_width="400dp"
-                    android:layout_height="62dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="26dp"
-                    android:backgroundTint="#1330CE"
-                    android:text="Book Now"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.482"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:layout_constraintVertical_bias="0.087" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
             </LinearLayout>
         </ScrollView>
+
+        <RatingBar
+            android:id="@+id/ratingBarUser"
+            android:layout_width="297dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="-210dp"
+            android:numStars="5"
+            android:stepSize="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+        <Button
+            android:id="@+id/btnRating"
+            android:layout_width="200dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="62dp"
+            android:backgroundTint="#FFC107"
+            android:text="Click me"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnBookNow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarUser" />
+
+
+        <Button
+            android:id="@+id/btnBookNow"
+            android:layout_width="400dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="#1330CE"
+            android:text="Book Now"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.087" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
